@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import * as style from '../../public/styles/style.js';
-import regeneratorRuntime from 'regenerator-runtime';
 import styled from 'styled-components';
 import {GrWifi} from 'react-icons/Gr';
 import {ImSpoonKnife} from 'react-icons/Im';
@@ -20,8 +19,6 @@ import { faPaw } from "@fortawesome/free-solid-svg-icons";
 
 
 var Amenities = () => {
-
-  var wifiIcon = "https://ddo0fzhfvians.cloudfront.net/uploads/icons/png/19796714791535956913-512.png"
 
   return (
 
