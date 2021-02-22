@@ -1,4 +1,4 @@
-import React, {useState, useEffect, fetch} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
@@ -25,7 +25,8 @@ const Save = () => {
 
   const { email, password } = formData;
 
-  const register = () => {
+  const register = (e) => {
+    e.preventDefault();
     axios.post('/api/register', {
       email: formData.email,
       password: formData.password
@@ -34,17 +35,6 @@ const Save = () => {
       console.log('Error with data posting')
     })
   }
-
-  // const submit = e => {
-  //   e.preventDefault();
-  //   fetch ('/api/register', {
-  //     method: 'POST',
-  //     body: JSON.stringify({user}),
-  //     headers: {'Content-Type': 'application/json'},
-  //   })
-  //     .then(res=> res.json())
-  //     .then(json => setUser(json.user))
-  // }
 
   return (
     <Popup trigger={
@@ -60,7 +50,7 @@ const Save = () => {
           <button className='close' onClick={close}>&times;</button>
 
           <div className='header'>
-            <h1>Work'n Treehouse</h1>
+            <h1>TREEHOUSE</h1>
             <h3>Sign in or register to save your favorite workspaces</h3>
           </div>
 
@@ -87,15 +77,13 @@ const Save = () => {
                   required
                   />
 
-  {console.log(formData)}
-
                 <input
-                  type='button'
+                  type='submit'
                   value='Register'
                   onClick={register}
                   />
 
-                <p>I accept Work'n Treehouse's <a href='#' id='link'>Terms of Use</a> and <a href='#' id='link'>Privacy Policy.</a></p>
+                <p>I accept Treehouse's<a href='#' id='link'>Terms of Use</a>and<a href='#' id='link'>Privacy Policy.</a></p>
               </div>
               </form>
                 <div className='social-col'>

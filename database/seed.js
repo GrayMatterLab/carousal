@@ -3,21 +3,8 @@ const {db, Carousal} = require('./index.js');
 const {coffeeTable, studySpace, moreSpaces} = require('./photo.js');
 const method = require('./helper.js');
 
-//Function to get a number of random images
-const randomImage = (arr, num) => {
-  var storage = [];
-  for (var i = 0; i < arr.length; i++) {
-    var randomIndex = arr[Math.floor(Math.random() * arr.length)];
-    if (storage.includes(randomIndex)) {
-      continue;
-    }
-    storage.push(randomIndex);
-  }
-  return storage.slice(0, num);
-}
-
 //Generate 100 listings
-  for (var i = 0; i < 3; i++) {
+  for (var i = 0; i <=5; i++) {
     var spaceImage = [...studySpace, ...coffeeTable];
     var address = faker.address.streetAddress();
 
@@ -40,3 +27,4 @@ const randomImage = (arr, num) => {
 
 var listing = new Carousal(fakeData)
 method.saveData(listing);
+

@@ -1,20 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser')
 const app = express();
-const {Carousal} = require('../database/index.js')
+const {Carousal, User, Share} = require('../database/index.js');
 
 app.use(express.static(__dirname + '/../client/public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-const MongoClient = require('mongodb').MongoClient
-const url = 'mongodb://127.0.0.1:27017'
-const dbName = 'carousal-module'
-var db;
-
+//Api GET request
 app.get('/api/carousal', (req, res) => {
   Carousal.findOne({})
     .then((results) => {
+      if(!results) {
+        throw new Error;
+      }
       res.status(201).send(results);
     })
     .catch((err) => {
@@ -23,24 +22,32 @@ app.get('/api/carousal', (req, res) => {
     })
 })
 
-//Established a mongo connection to insert data to another collection
-app.post('/api/register', (req, res) => {
-  MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
-    db = client.db(dbName);
-    db.collection('registryEntries').insertOne({
-      email: req.body.email,
-      password: req.body.password
-    })
+//Post user email and password to /api/register
+app.post('/api/register', async (req, res) => {
+  const {email, password} = req.body;
+  const user = new User({email, password})
+  await user.save()
     .then((result) => {
       res.send(result)
-      console.log(result, 'sent data successfully')
+      console.log(result, 'Registered User Successfully!')
     })
     .catch((err) => {
       console.log(err)
     })
-    client.close();
-  })
 })
 
+//Post recipient email to /api/share
+app.post('/api/share', async(req, res) => {
+  const {email} = req.body;
+  const recipient = new Share({email})
+  await recipient.save()
+    .then((result) => {
+      res.send(result)
+      console.log(result, 'Recipient email saved successfully!')
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+})
 
 module.exports = app;

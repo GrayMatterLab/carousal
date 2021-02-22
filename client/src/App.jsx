@@ -16,7 +16,7 @@ const App = () => {
   const [moreSpacesInfo, setMoreSpacesInfo] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/carousal')
+    axios.get(`/api/carousal`)
       .then((response) => {
         console.log(response, 'red')
         setPhotos(response.data.photos);
