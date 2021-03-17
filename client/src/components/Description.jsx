@@ -20,7 +20,9 @@ var Description = ({address, descriptionTxt, dataInfo}) => {
         </div>
 
         <div className='rightColumn'>
-          <div className='bookingBox'></div>
+          <div className='bookingBox'>
+          <div id="schedule-booking"></div>
+          </div>
         </div>
       </div>
 
