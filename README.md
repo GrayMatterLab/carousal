@@ -3,8 +3,8 @@ Treehouse is a co-working office rental web application that allows users to sea
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - 
+- https://github.com/GrayMatterLab/coworking-schedule-module
+  
 ## Usage
 
 > Some usage instructions
